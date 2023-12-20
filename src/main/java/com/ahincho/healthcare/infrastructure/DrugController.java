@@ -16,6 +16,10 @@ public class DrugController {
     public List<Drug> getAll() {
         return drugService.getAllDrugs();
     }
+    @GetMapping("/cid/{category}")
+    public List<Drug> getByCategory(@PathVariable("category") Integer category) {
+        return drugService.getDrugsByCategoryId(category);
+    }
     @PostMapping
     public Drug save(@RequestBody Drug drug) {
         return drugService.createDrug(drug);
