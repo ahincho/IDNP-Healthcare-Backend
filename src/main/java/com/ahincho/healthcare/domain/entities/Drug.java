@@ -1,5 +1,6 @@
 package com.ahincho.healthcare.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,8 +14,8 @@ public class Drug {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "category_id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
     private DrugCategory drugCategory;
     private String description;
 }
