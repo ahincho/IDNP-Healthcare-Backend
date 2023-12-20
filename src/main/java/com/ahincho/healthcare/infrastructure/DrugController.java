@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/drug")
+@RequestMapping("/api/drugs")
 public class DrugController {
     @Autowired
     private DrugService drugService;
@@ -16,7 +16,7 @@ public class DrugController {
     public List<Drug> getAll() {
         return drugService.getAllDrugs();
     }
-    @GetMapping("/cid/{category}")
+    @GetMapping("/category/{category}")
     public List<Drug> getByCategory(@PathVariable("category") Integer category) {
         return drugService.getDrugsByCategoryId(category);
     }
