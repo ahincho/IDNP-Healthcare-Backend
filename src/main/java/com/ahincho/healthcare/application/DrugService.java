@@ -1,6 +1,7 @@
 package com.ahincho.healthcare.application;
 
 import com.ahincho.healthcare.domain.entities.Drug;
+import com.ahincho.healthcare.domain.repositories.DrugCategoryRepository;
 import com.ahincho.healthcare.domain.repositories.DrugRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ public class DrugService {
     private DrugRepository drugRepository;
     public List<Drug> getAllDrugs() {
         return drugRepository.findAll();
+    }
+    public List<Drug> getDrugsByCategoryId(Integer drugCategoryId) {
+        return drugRepository.getDrugsByDrugCategoryId(drugCategoryId);
     }
     public Drug createDrug(Drug drug) {
         return drugRepository.save(drug);
