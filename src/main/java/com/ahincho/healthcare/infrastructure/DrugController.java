@@ -35,7 +35,7 @@ public class DrugController {
                     return updatedDrug;
                 }).orElse(null);
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) {
         drugService.deleteDrug(id);
     }
