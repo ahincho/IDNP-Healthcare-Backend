@@ -14,29 +14,29 @@ public class CategoryService {
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
-    public List<CategoryEntity> getAllDrugCategories() {
+    public List<CategoryEntity> getAllCategories() {
         return categoryRepository.findAll();
     }
-    public CategoryEntity createDrugCategory(CategoryEntity drugCategory) {
-        Optional<CategoryEntity> optionalDrugCategory = categoryRepository.findByName(drugCategory.getName());
-        if (optionalDrugCategory.isPresent()) { throw new CategoryDuplicatedException(); }
-        return categoryRepository.save(drugCategory);
+    public CategoryEntity createCategory(CategoryEntity categoryEntity) {
+        Optional<CategoryEntity> optionalCategory = categoryRepository.findByName(categoryEntity.getName());
+        if (optionalCategory.isPresent()) { throw new CategoryDuplicatedException(); }
+        return categoryRepository.save(categoryEntity);
     }
-    public CategoryEntity getDrugCategoryById(Integer id) throws CategoryNotFoundException {
-        Optional<CategoryEntity> optionalDrugCategory = categoryRepository.findById(id);
-        if (optionalDrugCategory.isEmpty()) { throw new CategoryNotFoundException(); }
-        return optionalDrugCategory.get();
+    public CategoryEntity getCategoryById(Integer id) throws CategoryNotFoundException {
+        Optional<CategoryEntity> optionalCategory = categoryRepository.findById(id);
+        if (optionalCategory.isEmpty()) { throw new CategoryNotFoundException(); }
+        return optionalCategory.get();
     }
-    public CategoryEntity updateDrugCategory(Integer id, CategoryEntity categoryEntity) throws CategoryNotFoundException {
-        Optional<CategoryEntity> optionalDrugCategory = categoryRepository.findById(id);
-        if (optionalDrugCategory.isEmpty()) { throw new CategoryNotFoundException(); }
-        CategoryEntity drugCategory = optionalDrugCategory.get();
-        drugCategory.setId(id);
-        return categoryRepository.save(drugCategory);
+    public CategoryEntity updateCategory(Integer id, CategoryEntity categoryEntity) throws CategoryNotFoundException {
+        Optional<CategoryEntity> optionalCategory = categoryRepository.findById(id);
+        if (optionalCategory.isEmpty()) { throw new CategoryNotFoundException(); }
+        CategoryEntity category = optionalCategory.get();
+        category.setId(id);
+        return categoryRepository.save(category);
     }
-    public void deleteDrugCategory(Integer id) throws CategoryNotFoundException {
-        Optional<CategoryEntity> optionalDrugCategory = categoryRepository.findById(id);
-        if (optionalDrugCategory.isEmpty()) { throw new CategoryNotFoundException(); }
+    public void deleteCategory(Integer id) throws CategoryNotFoundException {
+        Optional<CategoryEntity> optionalCategory = categoryRepository.findById(id);
+        if (optionalCategory.isEmpty()) { throw new CategoryNotFoundException(); }
         categoryRepository.deleteById(id);
     }
 }

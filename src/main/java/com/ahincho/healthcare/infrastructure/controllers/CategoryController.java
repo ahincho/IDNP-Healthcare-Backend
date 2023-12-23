@@ -1,11 +1,11 @@
 package com.ahincho.healthcare.infrastructure.controllers;
 
 import com.ahincho.healthcare.application.services.CategoryService;
-import com.ahincho.healthcare.domain.dtos.DrugCategoryRequest;
-import com.ahincho.healthcare.domain.dtos.DrugCategoryResponse;
+import com.ahincho.healthcare.domain.dtos.CategoryRequest;
+import com.ahincho.healthcare.domain.dtos.CategoryResponse;
 import com.ahincho.healthcare.domain.entities.CategoryEntity;
 import com.ahincho.healthcare.domain.exceptions.CategoryNotFoundException;
-import com.ahincho.healthcare.domain.mappers.DrugCategoryMapper;
+import com.ahincho.healthcare.domain.mappers.CategoryMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -20,30 +20,30 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
     @GetMapping
-    public ResponseEntity<List<DrugCategoryResponse>> getAll() {
-        List<CategoryEntity> drugCategoryEntities = categoryService.getAllDrugCategories();
-        if (drugCategoryEntities.isEmpty()) { return ResponseEntity.noContent().build(); }
-        return ResponseEntity.ok(drugCategoryEntities.stream().map(DrugCategoryMapper::entityToResponse).toList());
+    public ResponseEntity<List<CategoryResponse>> getAll() {
+        List<CategoryEntity> categoryEntities = categoryService.getAllCategories();
+        if (categoryEntities.isEmpty()) { return ResponseEntity.noContent().build(); }
+        return ResponseEntity.ok(categoryEntities.stream().map(CategoryMapper::entityToResponse).toList());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<DrugCategoryResponse> findById(@PathVariable("id") Integer id) throws CategoryNotFoundException {
-        CategoryEntity categoryEntity = categoryService.getDrugCategoryById(id);
-        return ResponseEntity.ok(DrugCategoryMapper.entityToResponse(categoryEntity));
+    public ResponseEntity<CategoryResponse> findById(@PathVariable("id") Integer id) throws CategoryNotFoundException {
+        CategoryEntity categoryEntity = categoryService.getCategoryById(id);
+        return ResponseEntity.ok(CategoryMapper.entityToResponse(categoryEntity));
     }
     @PostMapping
-    public ResponseEntity<DrugCategoryResponse> save(@RequestBody DrugCategoryRequest drugCategoryRequest, UriComponentsBuilder uriComponentsBuilder) {
-        CategoryEntity categoryEntity = categoryService.createDrugCategory(DrugCategoryMapper.requestToEntity(drugCategoryRequest));
+    public ResponseEntity<CategoryResponse> save(@RequestBody CategoryRequest categoryRequest, UriComponentsBuilder uriComponentsBuilder) {
+        CategoryEntity categoryEntity = categoryService.createCategory(CategoryMapper.requestToEntity(categoryRequest));
         URI uri = uriComponentsBuilder.path("/api/categories/{id}").buildAndExpand(categoryEntity.getId()).toUri();
-        return ResponseEntity.created(uri).body(DrugCategoryMapper.entityToResponse(categoryEntity));
+        return ResponseEntity.created(uri).body(CategoryMapper.entityToResponse(categoryEntity));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<DrugCategoryResponse> update(@PathVariable("id") Integer id, @RequestBody DrugCategoryRequest drugCategoryRequest) throws CategoryNotFoundException {
-        categoryService.updateDrugCategory(id, DrugCategoryMapper.requestToEntity(drugCategoryRequest));
+    public ResponseEntity<CategoryResponse> update(@PathVariable("id") Integer id, @RequestBody CategoryRequest categoryRequest) throws CategoryNotFoundException {
+        categoryService.updateCategory(id, CategoryMapper.requestToEntity(categoryRequest));
         return ResponseEntity.notFound().build();
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws CategoryNotFoundException {
-        categoryService.deleteDrugCategory(id);
+        categoryService.deleteCategory(id);
         return ResponseEntity.notFound().build();
     }
 }

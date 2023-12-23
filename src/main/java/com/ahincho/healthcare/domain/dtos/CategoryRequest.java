@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data @Builder
-public class DrugCategoryRequest {
+public class CategoryRequest {
     private Integer id;
     private String name;
 }
