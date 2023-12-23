@@ -1,39 +1,49 @@
-package com.ahincho.healthcare.infrastructure;
+package com.ahincho.healthcare.infrastructure.controllers;
 
 import com.ahincho.healthcare.application.services.DrugCategoryService;
+import com.ahincho.healthcare.domain.dtos.DrugCategoryRequest;
+import com.ahincho.healthcare.domain.dtos.DrugCategoryResponse;
 import com.ahincho.healthcare.domain.entities.DrugCategoryEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ahincho.healthcare.domain.exceptions.DrugCategoryNotFoundException;
+import com.ahincho.healthcare.domain.mappers.DrugCategoryMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.util.UriComponentsBuilder;
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
 public class DrugCategoryController {
-    @Autowired
-    private DrugCategoryService drugCategoryService;
-    @GetMapping
-    public List<DrugCategoryEntity> getAll() {
-        return drugCategoryService.getAllDrugCategories();
+    private final DrugCategoryService drugCategoryService;
+    public DrugCategoryController(DrugCategoryService drugCategoryService) {
+        this.drugCategoryService = drugCategoryService;
     }
-    @PostMapping
-    public DrugCategoryEntity save(@RequestBody DrugCategoryEntity drugCategoryEntity) {
-        return drugCategoryService.createDrugCategory(drugCategoryEntity);
+    @GetMapping
+    public ResponseEntity<List<DrugCategoryResponse>> getAll() {
+        List<DrugCategoryEntity> drugCategoryEntities = drugCategoryService.getAllDrugCategories();
+        if (drugCategoryEntities.isEmpty()) { return ResponseEntity.noContent().build(); }
+        return ResponseEntity.ok(drugCategoryEntities.stream().map(DrugCategoryMapper::entityToResponse).toList());
     }
     @GetMapping("/{id}")
-    public DrugCategoryEntity findById(@PathVariable("id") Integer id) {
-        return drugCategoryService.getDrugCategoryById(id).orElse(null);
+    public ResponseEntity<DrugCategoryResponse> findById(@PathVariable("id") Integer id) throws DrugCategoryNotFoundException {
+        DrugCategoryEntity drugCategoryEntity = drugCategoryService.getDrugCategoryById(id);
+        return ResponseEntity.ok(DrugCategoryMapper.entityToResponse(drugCategoryEntity));
+    }
+    @PostMapping
+    public ResponseEntity<DrugCategoryResponse> save(@RequestBody DrugCategoryRequest drugCategoryRequest, UriComponentsBuilder uriComponentsBuilder) {
+        DrugCategoryEntity drugCategoryEntity = drugCategoryService.createDrugCategory(DrugCategoryMapper.requestToEntity(drugCategoryRequest));
+        URI uri = uriComponentsBuilder.path("/api/categories/{id}").buildAndExpand(drugCategoryEntity.getId()).toUri();
+        return ResponseEntity.created(uri).body(DrugCategoryMapper.entityToResponse(drugCategoryEntity));
     }
     @PutMapping("/{id}")
-    public DrugCategoryEntity update(@PathVariable("id") Integer id, @RequestBody DrugCategoryEntity drugCategoryEntity) {
-        return drugCategoryService.getDrugCategoryById(id)
-                .map(savedDrugCategory -> {
-                    savedDrugCategory.setName(drugCategoryEntity.getName());
-                    return drugCategoryService.updateDrugCategory(savedDrugCategory);
-                }).orElse(null);
+    public ResponseEntity<DrugCategoryResponse> update(@PathVariable("id") Integer id, @RequestBody DrugCategoryRequest drugCategoryRequest) throws DrugCategoryNotFoundException {
+        drugCategoryService.updateDrugCategory(id, DrugCategoryMapper.requestToEntity(drugCategoryRequest));
+        return ResponseEntity.notFound().build();
     }
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws DrugCategoryNotFoundException {
         drugCategoryService.deleteDrugCategory(id);
+        return ResponseEntity.notFound().build();
     }
 }
