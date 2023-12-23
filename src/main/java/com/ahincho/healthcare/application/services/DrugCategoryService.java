@@ -22,19 +22,19 @@ public class DrugCategoryService {
         if (optionalDrugCategory.isPresent()) { throw new DrugCategoryDuplicatedException(); }
         return drugCategoryRepository.save(drugCategory);
     }
-    public DrugCategoryEntity getDrugCategoryById(Integer id) {
+    public DrugCategoryEntity getDrugCategoryById(Integer id) throws DrugCategoryNotFoundException {
         Optional<DrugCategoryEntity> optionalDrugCategory = drugCategoryRepository.findById(id);
         if (optionalDrugCategory.isEmpty()) { throw new DrugCategoryNotFoundException(); }
         return optionalDrugCategory.get();
     }
-    public DrugCategoryEntity updateDrugCategory(Integer id, DrugCategoryEntity drugCategoryEntity) {
+    public DrugCategoryEntity updateDrugCategory(Integer id, DrugCategoryEntity drugCategoryEntity) throws DrugCategoryNotFoundException {
         Optional<DrugCategoryEntity> optionalDrugCategory = drugCategoryRepository.findById(id);
         if (optionalDrugCategory.isEmpty()) { throw new DrugCategoryNotFoundException(); }
         DrugCategoryEntity drugCategory = optionalDrugCategory.get();
         drugCategory.setId(id);
         return drugCategoryRepository.save(drugCategory);
     }
-    public void deleteDrugCategory(Integer id) {
+    public void deleteDrugCategory(Integer id) throws DrugCategoryNotFoundException {
         Optional<DrugCategoryEntity> optionalDrugCategory = drugCategoryRepository.findById(id);
         if (optionalDrugCategory.isEmpty()) { throw new DrugCategoryNotFoundException(); }
         drugCategoryRepository.deleteById(id);
