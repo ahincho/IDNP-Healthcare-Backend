@@ -2,17 +2,17 @@ package com.ahincho.healthcare.domain.mappers;
 
 import com.ahincho.healthcare.domain.dtos.DrugCategoryRequest;
 import com.ahincho.healthcare.domain.dtos.DrugCategoryResponse;
-import com.ahincho.healthcare.domain.entities.DrugCategoryEntity;
+import com.ahincho.healthcare.domain.entities.CategoryEntity;
 
 public class DrugCategoryMapper {
-    public static DrugCategoryResponse entityToResponse(DrugCategoryEntity drugCategoryEntity) {
+    public static DrugCategoryResponse entityToResponse(CategoryEntity categoryEntity) {
         return DrugCategoryResponse.builder()
-                .id(drugCategoryEntity.getId())
-                .name(drugCategoryEntity.getName())
+                .id(categoryEntity.getId())
+                .name(categoryEntity.getName())
                 .build();
     }
-    public static DrugCategoryEntity requestToEntity(DrugCategoryRequest drugCategoryRequest) {
-        return DrugCategoryEntity.builder()
+    public static CategoryEntity requestToEntity(DrugCategoryRequest drugCategoryRequest) {
+        return CategoryEntity.builder()
                 .id(drugCategoryRequest.getId())
                 .name(drugCategoryRequest.getName())
                 .build();
