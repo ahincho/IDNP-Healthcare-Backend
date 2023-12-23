@@ -13,7 +13,6 @@ public class CategoryMapper {
     }
     public static CategoryEntity requestToEntity(CategoryRequest categoryRequest) {
         return CategoryEntity.builder()
-                .id(categoryRequest.getId())
                 .name(categoryRequest.getName())
                 .build();
     }
