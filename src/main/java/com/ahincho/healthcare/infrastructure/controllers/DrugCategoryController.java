@@ -1,7 +1,7 @@
 package com.ahincho.healthcare.infrastructure;
 
-import com.ahincho.healthcare.application.DrugCategoryService;
-import com.ahincho.healthcare.domain.entities.DrugCategory;
+import com.ahincho.healthcare.application.services.DrugCategoryService;
+import com.ahincho.healthcare.domain.entities.DrugCategoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,24 +13,23 @@ public class DrugCategoryController {
     @Autowired
     private DrugCategoryService drugCategoryService;
     @GetMapping
-    public List<DrugCategory> getAll() {
+    public List<DrugCategoryEntity> getAll() {
         return drugCategoryService.getAllDrugCategories();
     }
     @PostMapping
-    public DrugCategory save(@RequestBody DrugCategory drugCategory) {
-        return drugCategoryService.createDrugCategory(drugCategory);
+    public DrugCategoryEntity save(@RequestBody DrugCategoryEntity drugCategoryEntity) {
+        return drugCategoryService.createDrugCategory(drugCategoryEntity);
     }
     @GetMapping("/{id}")
-    public DrugCategory findById(@PathVariable("id") Integer id) {
+    public DrugCategoryEntity findById(@PathVariable("id") Integer id) {
         return drugCategoryService.getDrugCategoryById(id).orElse(null);
     }
     @PutMapping("/{id}")
-    public DrugCategory update(@PathVariable("id") Integer id, @RequestBody DrugCategory drugCategory) {
+    public DrugCategoryEntity update(@PathVariable("id") Integer id, @RequestBody DrugCategoryEntity drugCategoryEntity) {
         return drugCategoryService.getDrugCategoryById(id)
                 .map(savedDrugCategory -> {
-                    savedDrugCategory.setName(drugCategory.getName());
-                    DrugCategory updatedDrugCategory = drugCategoryService.updateDrugCategory(savedDrugCategory);
-                    return updatedDrugCategory;
+                    savedDrugCategory.setName(drugCategoryEntity.getName());
+                    return drugCategoryService.updateDrugCategory(savedDrugCategory);
                 }).orElse(null);
     }
     @DeleteMapping("/{id}")
