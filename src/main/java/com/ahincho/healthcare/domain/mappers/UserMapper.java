@@ -11,7 +11,7 @@ public class UserMapper {
                 .name(userEntity.getName())
                 .lastname(userEntity.getLastname())
                 .username(userEntity.getUsername())
-                .role(userEntity.getRole())
+                .role(userEntity.getRole().toString())
                 .build();
     }
     public static UserEntity requestToEntity(UserRequest userRequest) {
