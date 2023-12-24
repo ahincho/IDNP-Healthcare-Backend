@@ -30,9 +30,8 @@ public class CategoryService {
     public CategoryEntity updateCategory(Integer id, CategoryEntity categoryEntity) throws CategoryNotFoundException {
         Optional<CategoryEntity> optionalCategory = categoryRepository.findById(id);
         if (optionalCategory.isEmpty()) { throw new CategoryNotFoundException(); }
-        CategoryEntity category = optionalCategory.get();
-        category.setId(id);
-        return categoryRepository.save(category);
+        categoryEntity.setId(id);
+        return categoryRepository.save(categoryEntity);
     }
     public void deleteCategory(Integer id) throws CategoryNotFoundException {
         Optional<CategoryEntity> optionalCategory = categoryRepository.findById(id);
