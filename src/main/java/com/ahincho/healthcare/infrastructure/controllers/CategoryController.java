@@ -9,6 +9,7 @@ import com.ahincho.healthcare.domain.mappers.CategoryMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -31,13 +32,13 @@ public class CategoryController {
         return ResponseEntity.ok(CategoryMapper.entityToResponse(categoryEntity));
     }
     @PostMapping
-    public ResponseEntity<CategoryResponse> save(@RequestBody CategoryRequest categoryRequest, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<CategoryResponse> save(@RequestBody @Valid CategoryRequest categoryRequest, UriComponentsBuilder uriComponentsBuilder) {
         CategoryEntity categoryEntity = categoryService.createCategory(CategoryMapper.requestToEntity(categoryRequest));
         URI uri = uriComponentsBuilder.path("/api/categories/{id}").buildAndExpand(categoryEntity.getId()).toUri();
         return ResponseEntity.created(uri).body(CategoryMapper.entityToResponse(categoryEntity));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponse> update(@PathVariable("id") Integer id, @RequestBody CategoryRequest categoryRequest) throws CategoryNotFoundException {
+    public ResponseEntity<CategoryResponse> update(@PathVariable("id") Integer id, @RequestBody @Valid CategoryRequest categoryRequest) throws CategoryNotFoundException {
         categoryService.updateCategory(id, CategoryMapper.requestToEntity(categoryRequest));
         return ResponseEntity.notFound().build();
     }
