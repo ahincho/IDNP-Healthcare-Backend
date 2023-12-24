@@ -384,7 +384,7 @@
 					"name": "Users",
 					"item": [
 						{
-							"name": "Register",
+							"name": "Register User",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -432,6 +432,52 @@
 									"path": [
 										"{{users}}",
 										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"lastname\": \"Jove\",\r\n    \"username\": \"ejove\",\r\n    \"email\": \"ejove@unsa.edu.pe\",\r\n    \"password\": \"@ejove/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{users}}/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Make Admin",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{users}}/upgrade/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"upgrade",
+										"1"
 									]
 								}
 							},
