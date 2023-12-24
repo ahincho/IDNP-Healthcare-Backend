@@ -12,6 +12,7 @@ public class DrugMapper {
                 .name(drugEntity.getName())
                 .categoryId(drugEntity.getCategory().getId())
                 .categoryName(drugEntity.getCategory().getName())
+                .description(drugEntity.getDescription())
                 .build();
     }
     public static DrugEntity requestToEntity(DrugRequest drugRequest) {
