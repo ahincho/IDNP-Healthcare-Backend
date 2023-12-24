@@ -5,6 +5,7 @@ import com.ahincho.healthcare.domain.dtos.LoginRequest;
 import com.ahincho.healthcare.domain.dtos.UserRequest;
 import com.ahincho.healthcare.domain.dtos.UserResponse;
 import com.ahincho.healthcare.domain.entities.UserEntity;
+import com.ahincho.healthcare.domain.enums.Role;
 import com.ahincho.healthcare.domain.exceptions.UserDuplicatedException;
 import com.ahincho.healthcare.domain.exceptions.UserNotFoundException;
 import com.ahincho.healthcare.domain.mappers.UserMapper;
@@ -24,6 +25,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<UserResponse> save(@RequestBody @Valid UserRequest userRequest, UriComponentsBuilder uriComponentsBuilder) throws UserDuplicatedException {
         UserEntity userEntity = userService.createUser(UserMapper.requestToEntity(userRequest));
+        userEntity.setRole(Role.VIEWER);
         URI uri = uriComponentsBuilder.path("/login").build().toUri();
         return ResponseEntity.created(uri).body(UserMapper.entityToResponse(userEntity));
     }
