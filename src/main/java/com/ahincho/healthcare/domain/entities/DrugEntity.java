@@ -15,6 +15,6 @@ public class DrugEntity {
     private String name;
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
-    private DrugCategoryEntity drugCategory;
+    private CategoryEntity drugCategory;
     private String description;
 }
