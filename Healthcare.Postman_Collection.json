@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "1ebec357-a4b4-45ed-a670-19ebacc36fe7",
+		"name": "Healthcare",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28629003"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Get Categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Anesthetics\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Antibacterials\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Anticonvulsants\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Category By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{categories}}/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Antifungals\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{categories}}/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Drugs",
+					"item": [
+						{
+							"name": "Get Drugs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{drugs}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Drug",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Paracetamol\",\r\n    \"drugCategory\": {\r\n        \"id\": 1\r\n    },\r\n    \"description\": \"Analgesic and antipyretic drug that is used to temporarily relieve mild-to-moderate pain and fever\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{drugs}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Drug",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ibuprofen\",\r\n    \"drugCategory\": {\r\n        \"id\": 2\r\n    },\r\n    \"description\": \"Nonsteroidal anti-inflammatory drug (NSAID) used to treat mild to moderate pain, and helps to relieve symptoms of arthritis (osteoarthritis, rheumatoid arthritis, or juvenile arthritis)\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{drugs}}/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Drug",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{drugs}}/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Drugs By Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{drugs}}/category/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}",
+										"category",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cloud",
+			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "localhost:8090",
+			"type": "string"
+		},
+		{
+			"key": "categories",
+			"value": "api/categories",
+			"type": "string"
+		},
+		{
+			"key": "drugs",
+			"value": "api/drugs",
+			"type": "string"
+		}
+	]
+}
