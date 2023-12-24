@@ -38,7 +38,7 @@ public class CategoryController {
         return ResponseEntity.created(uri).body(CategoryMapper.entityToResponse(categoryEntity));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponse> update(@PathVariable("id") Integer id, @RequestBody @Valid CategoryRequest categoryRequest) throws CategoryNotFoundException {
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid CategoryRequest categoryRequest) throws CategoryNotFoundException {
         categoryService.updateCategory(id, CategoryMapper.requestToEntity(categoryRequest));
         return ResponseEntity.notFound().build();
     }

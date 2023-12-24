@@ -27,11 +27,11 @@ public class CategoryService {
         if (optionalCategory.isEmpty()) { throw new CategoryNotFoundException(); }
         return optionalCategory.get();
     }
-    public CategoryEntity updateCategory(Integer id, CategoryEntity categoryEntity) throws CategoryNotFoundException {
+    public void updateCategory(Integer id, CategoryEntity categoryEntity) throws CategoryNotFoundException {
         Optional<CategoryEntity> optionalCategory = categoryRepository.findById(id);
         if (optionalCategory.isEmpty()) { throw new CategoryNotFoundException(); }
         categoryEntity.setId(id);
-        return categoryRepository.save(categoryEntity);
+        categoryRepository.save(categoryEntity);
     }
     public void deleteCategory(Integer id) throws CategoryNotFoundException {
         Optional<CategoryEntity> optionalCategory = categoryRepository.findById(id);
