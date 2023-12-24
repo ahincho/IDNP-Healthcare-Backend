@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface DrugRepository extends JpaRepository<DrugEntity, Integer> {
-    List<DrugEntity> getDrugEntityByDrugCategoryId(Integer integer);
+    List<DrugEntity> getDrugEntityByCategoryId(Integer integer);
 }
