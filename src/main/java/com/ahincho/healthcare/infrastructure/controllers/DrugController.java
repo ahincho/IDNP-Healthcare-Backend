@@ -4,6 +4,9 @@ import com.ahincho.healthcare.application.services.DrugService;
 import com.ahincho.healthcare.domain.dtos.DrugRequest;
 import com.ahincho.healthcare.domain.dtos.DrugResponse;
 import com.ahincho.healthcare.domain.entities.DrugEntity;
+import com.ahincho.healthcare.domain.exceptions.CategoryNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.DrugDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.DrugNotFoundException;
 import com.ahincho.healthcare.domain.mappers.DrugMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,23 +35,23 @@ public class DrugController {
         return ResponseEntity.ok(drugEntities.stream().map(DrugMapper::entityToResponse).toList());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<DrugResponse> findById(@PathVariable("id") Integer id) {
+    public ResponseEntity<DrugResponse> findById(@PathVariable("id") Integer id) throws DrugNotFoundException {
         DrugEntity drugEntity = drugService.findDrugById(id);
         return ResponseEntity.ok(DrugMapper.entityToResponse(drugEntity));
     }
     @PostMapping
-    public ResponseEntity<DrugResponse> save(@RequestBody @Valid DrugRequest drugRequest, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<DrugResponse> save(@RequestBody @Valid DrugRequest drugRequest, UriComponentsBuilder uriComponentsBuilder) throws CategoryNotFoundException, DrugDuplicatedException {
         DrugEntity drugEntity = drugService.createDrug(DrugMapper.requestToEntity(drugRequest));
         URI uri = uriComponentsBuilder.path("/api/drugs/{id}").buildAndExpand(drugEntity.getId()).toUri();
         return ResponseEntity.created(uri).body(DrugMapper.entityToResponse(drugEntity));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid DrugRequest drugRequest) {
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid DrugRequest drugRequest) throws CategoryNotFoundException, DrugNotFoundException {
         drugService.updateDrug(id, DrugMapper.requestToEntity(drugRequest));
         return ResponseEntity.notFound().build();
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws DrugNotFoundException {
         drugService.deleteDrug(id);
         return ResponseEntity.notFound().build();
     }
