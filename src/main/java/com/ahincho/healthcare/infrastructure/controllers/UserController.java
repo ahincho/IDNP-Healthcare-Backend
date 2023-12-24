@@ -34,4 +34,9 @@ public class UserController {
         UserEntity userEntity = userService.findUserByEmailAndPassword(email, password);
         return ResponseEntity.ok(UserMapper.entityToResponse(userEntity));
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid UserRequest userRequest) throws UserNotFoundException {
+        userService.updateUser(id, UserMapper.requestToEntity(userRequest));
+        return ResponseEntity.notFound().build();
+    }
 }
