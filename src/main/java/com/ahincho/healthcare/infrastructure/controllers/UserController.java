@@ -39,4 +39,9 @@ public class UserController {
         userService.updateUser(id, UserMapper.requestToEntity(userRequest));
         return ResponseEntity.notFound().build();
     }
+    @GetMapping("/upgrade/{id}")
+    private ResponseEntity<Void> upgrade(@PathVariable("id") Integer id) throws UserNotFoundException {
+        userService.makeAdmin(id);
+        return ResponseEntity.notFound().build();
+    }
 }

@@ -32,4 +32,11 @@ public class UserService {
         userEntity.setId(id);
         userRepository.save(userEntity);
     }
+    public void makeAdmin(Integer id) throws UserNotFoundException {
+        Optional<UserEntity> optionalUser = userRepository.findById(id);
+        if (optionalUser.isEmpty()) { throw new UserNotFoundException(); }
+        UserEntity userEntity = optionalUser.get();
+        userEntity.setRole(Role.ADMIN);
+        userRepository.save(userEntity);
+    }
 }
