@@ -30,7 +30,9 @@ public class DrugService {
         if (optionalDrug.isPresent()) { throw new DrugDuplicatedException(); }
         Optional<CategoryEntity> optionalCategory = categoryRepository.findById(drugEntity.getCategory().getId());
         if (optionalCategory.isEmpty()) { throw new CategoryNotFoundException(); }
-        return drugRepository.save(drugEntity);
+        DrugEntity savedDrugEntity = drugRepository.save(drugEntity);
+        savedDrugEntity.setCategory(optionalCategory.get());
+        return drugRepository.save(savedDrugEntity);
     }
     public DrugEntity findDrugById(Integer id) throws DrugNotFoundException {
         Optional<DrugEntity> optionalDrug = drugRepository.findById(id);
