@@ -26,7 +26,7 @@ public class UserController {
     public ResponseEntity<UserResponse> save(@RequestBody @Valid UserRequest userRequest, UriComponentsBuilder uriComponentsBuilder) throws UserDuplicatedException {
         UserEntity userEntity = userService.createUser(UserMapper.requestToEntity(userRequest));
         userEntity.setRole(Role.VIEWER);
-        URI uri = uriComponentsBuilder.path("/login").build().toUri();
+        URI uri = uriComponentsBuilder.path("/api/users/login").build().toUri();
         return ResponseEntity.created(uri).body(UserMapper.entityToResponse(userEntity));
     }
     @PostMapping("/login")
