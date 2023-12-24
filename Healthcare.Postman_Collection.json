@@ -379,6 +379,111 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Register User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Angel\",\r\n    \"lastname\": \"Hincho\",\r\n    \"username\": \"ahincho\",\r\n    \"email\": \"ahincho@unsa.edu.pe\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{users}}/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"ahincho@unsa.edu.pe\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{users}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"lastname\": \"Jove\",\r\n    \"username\": \"ejove\",\r\n    \"email\": \"ejove@unsa.edu.pe\",\r\n    \"password\": \"@ejove/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{users}}/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Make Admin",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{users}}/upgrade/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"upgrade",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -421,6 +526,11 @@
 		{
 			"key": "drugs",
 			"value": "api/drugs",
+			"type": "string"
+		},
+		{
+			"key": "users",
+			"value": "api/users",
 			"type": "string"
 		}
 	]
