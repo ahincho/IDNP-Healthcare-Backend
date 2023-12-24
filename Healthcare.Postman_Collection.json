@@ -379,6 +379,65 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Angel\",\r\n    \"lastname\": \"Hincho\",\r\n    \"username\": \"ahincho\",\r\n    \"email\": \"ahincho@unsa.edu.pe\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{users}}/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"ahincho@unsa.edu.pe\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{users}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -421,6 +480,11 @@
 		{
 			"key": "drugs",
 			"value": "api/drugs",
+			"type": "string"
+		},
+		{
+			"key": "users",
+			"value": "api/users",
 			"type": "string"
 		}
 	]
