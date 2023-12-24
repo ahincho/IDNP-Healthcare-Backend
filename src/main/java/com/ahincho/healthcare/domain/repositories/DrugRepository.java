@@ -1,11 +1,13 @@
 package com.ahincho.healthcare.domain.repositories;
 
-import com.ahincho.healthcare.domain.entities.Drug;
+import com.ahincho.healthcare.domain.entities.DrugEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface DrugRepository extends JpaRepository<Drug, Integer> {
-    List<Drug> getDrugsByDrugCategoryId(Integer integer);
+public interface DrugRepository extends JpaRepository<DrugEntity, Integer> {
+    Optional<DrugEntity> getDrugEntityByName(String name);
+    List<DrugEntity> getDrugEntityByCategoryId(Integer integer);
 }
