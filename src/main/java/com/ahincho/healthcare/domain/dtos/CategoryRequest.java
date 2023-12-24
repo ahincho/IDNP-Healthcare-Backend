@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data @Builder
 public class CategoryRequest {
-    @NotBlank(message = "Name must not blank")
+    @NotBlank(message = "Name must not be blank")
     private String name;
 }
