@@ -1,6 +1,7 @@
 package com.ahincho.healthcare.application.services;
 
 import com.ahincho.healthcare.domain.entities.UserEntity;
+import com.ahincho.healthcare.domain.enums.Role;
 import com.ahincho.healthcare.domain.exceptions.UserDuplicatedException;
 import com.ahincho.healthcare.domain.exceptions.UserNotFoundException;
 import com.ahincho.healthcare.domain.repositories.UserRepository;
@@ -22,6 +23,7 @@ public class UserService {
     public UserEntity createUser(UserEntity userEntity) throws UserDuplicatedException {
         Optional<UserEntity> optionalUser = userRepository.findUserEntityByEmail(userEntity.getEmail());
         if (optionalUser.isPresent()) { throw new UserDuplicatedException(); }
+        userEntity.setRole(Role.VIEWER);
         return userRepository.save(userEntity);
     }
     public void updateUser(Integer id, UserEntity userEntity) throws UserNotFoundException {

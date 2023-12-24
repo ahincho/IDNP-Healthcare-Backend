@@ -1,5 +1,6 @@
 package com.ahincho.healthcare.domain.dtos;
 
+import com.ahincho.healthcare.domain.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,5 +14,5 @@ public class UserResponse {
     private String name;
     private String lastname;
     private String username;
-    private String role;
+    private Role role;
 }
