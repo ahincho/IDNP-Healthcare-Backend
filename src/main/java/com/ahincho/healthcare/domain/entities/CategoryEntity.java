@@ -3,8 +3,8 @@ package com.ahincho.healthcare.domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table(name = "drug_categories")
-@Entity(name = "drug_category")
+@Table(name = "categories")
+@Entity(name = "category")
 @Getter @Setter @Builder
 @NoArgsConstructor
 @AllArgsConstructor
