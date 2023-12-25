@@ -4,6 +4,7 @@ import com.ahincho.healthcare.domain.entities.RoleEntity;
 import com.ahincho.healthcare.domain.exceptions.RoleDuplicatedException;
 import com.ahincho.healthcare.domain.exceptions.RoleNotFoundException;
 import com.ahincho.healthcare.domain.repositories.RoleRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -22,11 +23,13 @@ public class RoleService {
         if (optionalRole.isEmpty()) { throw new RoleNotFoundException(); }
         return optionalRole.get();
     }
+    @Transactional
     public RoleEntity createRole(RoleEntity roleEntity) throws RoleDuplicatedException {
         Optional<RoleEntity> optionalRole = roleRepository.findByName(roleEntity.getName());
         if (optionalRole.isPresent()) { throw new RoleDuplicatedException(); }
         return roleRepository.save(roleEntity);
     }
+    @Transactional
     public void updateRole(Integer id, RoleEntity roleEntity) throws RoleNotFoundException, RoleDuplicatedException {
         Optional<RoleEntity> optionalRoleId = roleRepository.findById(id);
         if (optionalRoleId.isEmpty()) { throw new RoleNotFoundException(); }
@@ -35,6 +38,7 @@ public class RoleService {
         roleEntity.setId(id);
         roleRepository.save(roleEntity);
     }
+    @Transactional
     public void deleteRole(Integer id) throws RoleNotFoundException {
         Optional<RoleEntity> optionalRole = roleRepository.findById(id);
         if (optionalRole.isEmpty()) { throw new RoleNotFoundException(); }

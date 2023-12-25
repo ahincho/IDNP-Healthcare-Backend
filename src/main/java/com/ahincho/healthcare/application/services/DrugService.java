@@ -8,6 +8,7 @@ import com.ahincho.healthcare.domain.exceptions.DrugNotFoundException;
 import com.ahincho.healthcare.domain.repositories.CategoryRepository;
 import com.ahincho.healthcare.domain.repositories.DrugRepository;
 import org.springframework.stereotype.Service;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,7 @@ public class DrugService {
     public List<DrugEntity> getDrugsByCategoryId(Integer categoryId) {
         return drugRepository.findByCategoryId(categoryId);
     }
+    @Transactional
     public DrugEntity createDrug(DrugEntity drugEntity) throws DrugDuplicatedException, CategoryNotFoundException {
         Optional<DrugEntity> optionalDrug = drugRepository.findByName(drugEntity.getName());
         if (optionalDrug.isPresent()) { throw new DrugDuplicatedException(); }
@@ -39,6 +41,7 @@ public class DrugService {
         if (optionalDrug.isEmpty()) { throw new DrugNotFoundException(); }
         return optionalDrug.get();
     }
+    @Transactional
     public void updateDrug(Integer id, DrugEntity drugEntity) throws DrugNotFoundException, CategoryNotFoundException, DrugDuplicatedException {
         Optional<DrugEntity> optionalDrugId = drugRepository.findById(id);
         if (optionalDrugId.isEmpty()) { throw new DrugNotFoundException(); }
@@ -49,6 +52,7 @@ public class DrugService {
         drugEntity.setId(id);
         drugRepository.save(drugEntity);
     }
+    @Transactional
     public void deleteDrug(Integer id) throws DrugNotFoundException {
         Optional<DrugEntity> optionalDrug = drugRepository.findById(id);
         if (optionalDrug.isEmpty()) { throw new DrugNotFoundException(); }
