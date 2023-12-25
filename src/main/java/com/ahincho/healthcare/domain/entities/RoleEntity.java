@@ -1,6 +1,5 @@
 package com.ahincho.healthcare.domain.entities;
 
-import com.ahincho.healthcare.domain.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +12,5 @@ public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private String name;
 }
