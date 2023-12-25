@@ -1,10 +1,10 @@
 package com.ahincho.healthcare.infrastructure.controllers;
 
 import com.ahincho.healthcare.application.services.UserService;
-import com.ahincho.healthcare.domain.dtos.LoginRequest;
 import com.ahincho.healthcare.domain.dtos.UserRequest;
 import com.ahincho.healthcare.domain.dtos.UserResponse;
 import com.ahincho.healthcare.domain.entities.UserEntity;
+import com.ahincho.healthcare.domain.exceptions.RoleNotFoundException;
 import com.ahincho.healthcare.domain.exceptions.UserDuplicatedEmailException;
 import com.ahincho.healthcare.domain.exceptions.UserDuplicatedUsernameException;
 import com.ahincho.healthcare.domain.exceptions.UserNotFoundException;
@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAll() {
         List<UserEntity> userEntities = userService.getAllUsers();
-        if (userEntities.isEmpty()) { ResponseEntity.noContent().build(); }
+        if (userEntities.isEmpty()) { return ResponseEntity.noContent().build(); }
         return ResponseEntity.ok(userEntities.stream().map(UserMapper::entityToResponse).toList());
     }
     @GetMapping("/{id}")
@@ -35,9 +35,9 @@ public class UserController {
         return ResponseEntity.ok(UserMapper.entityToResponse(userEntity));
     }
     @PostMapping
-    public ResponseEntity<UserResponse> save(@RequestBody @Valid UserRequest userRequest, UriComponentsBuilder uriComponentsBuilder) throws UserDuplicatedEmailException, UserDuplicatedUsernameException {
+    public ResponseEntity<UserResponse> save(@RequestBody @Valid UserRequest userRequest, UriComponentsBuilder uriComponentsBuilder) throws UserDuplicatedEmailException, UserDuplicatedUsernameException, RoleNotFoundException {
         UserEntity savedUserEntity = userService.createUser(UserMapper.requestToEntity(userRequest));
-        URI uri = uriComponentsBuilder.path("/api/users/login").build().toUri();
+        URI uri = uriComponentsBuilder.path("/api/users/{id}").buildAndExpand(savedUserEntity.getId()).toUri();
         return ResponseEntity.created(uri).body(UserMapper.entityToResponse(savedUserEntity));
     }
     @PutMapping("/{id}")
