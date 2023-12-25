@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface DrugRepository extends JpaRepository<DrugEntity, Integer> {
-    Optional<DrugEntity> getDrugEntityByName(String name);
-    List<DrugEntity> getDrugEntityByCategoryId(Integer integer);
+    Optional<DrugEntity> findByName(String name);
+    List<DrugEntity> findByCategoryId(Integer integer);
 }
