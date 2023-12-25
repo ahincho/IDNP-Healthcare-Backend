@@ -2,7 +2,7 @@ package com.ahincho.healthcare.application.services;
 
 import com.ahincho.healthcare.domain.entities.UserEntity;
 import com.ahincho.healthcare.domain.enums.Role;
-import com.ahincho.healthcare.domain.exceptions.UserDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.UserDuplicatedEmailException;
 import com.ahincho.healthcare.domain.exceptions.UserNotFoundException;
 import com.ahincho.healthcare.domain.repositories.UserRepository;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,9 @@ public class UserService {
         if (optionalUser.isEmpty()) { throw new UserNotFoundException(); }
         return optionalUser.get();
     }
-    public UserEntity createUser(UserEntity userEntity) throws UserDuplicatedException {
+    public UserEntity createUser(UserEntity userEntity) throws UserDuplicatedEmailException {
         Optional<UserEntity> optionalUser = userRepository.findUserEntityByEmail(userEntity.getEmail());
-        if (optionalUser.isPresent()) { throw new UserDuplicatedException(); }
+        if (optionalUser.isPresent()) { throw new UserDuplicatedEmailException(); }
         userEntity.setRole(Role.VIEWER);
         return userRepository.save(userEntity);
     }
