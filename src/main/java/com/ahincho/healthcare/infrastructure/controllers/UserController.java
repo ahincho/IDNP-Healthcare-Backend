@@ -9,6 +9,7 @@ import com.ahincho.healthcare.domain.exceptions.UserDuplicatedException;
 import com.ahincho.healthcare.domain.exceptions.UserNotFoundException;
 import com.ahincho.healthcare.domain.mappers.UserMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import jakarta.validation.Valid;
@@ -18,14 +19,18 @@ import java.net.URI;
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
-    public UserController(UserService userService) {
+    private final PasswordEncoder passwordEncoder;
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
     @PostMapping("/register")
     public ResponseEntity<UserResponse> save(@RequestBody @Valid UserRequest userRequest, UriComponentsBuilder uriComponentsBuilder) throws UserDuplicatedException {
-        UserEntity userEntity = userService.createUser(UserMapper.requestToEntity(userRequest));
+        UserEntity userEntity = UserMapper.requestToEntity(userRequest);
+        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+        UserEntity savedUserEntity = userService.createUser(userEntity);
         URI uri = uriComponentsBuilder.path("/api/users/login").build().toUri();
-        return ResponseEntity.created(uri).body(UserMapper.entityToResponse(userEntity));
+        return ResponseEntity.created(uri).body(UserMapper.entityToResponse(savedUserEntity));
     }
     @PostMapping("/login")
     public ResponseEntity<UserResponse> login(@RequestBody @Valid LoginRequest loginRequest) throws UserNotFoundException {
