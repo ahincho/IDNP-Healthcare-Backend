@@ -46,7 +46,7 @@ public class DrugController {
         return ResponseEntity.created(uri).body(DrugMapper.entityToResponse(drugEntity));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid DrugRequest drugRequest) throws CategoryNotFoundException, DrugNotFoundException {
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid DrugRequest drugRequest) throws CategoryNotFoundException, DrugNotFoundException, DrugDuplicatedException {
         drugService.updateDrug(id, DrugMapper.requestToEntity(drugRequest));
         return ResponseEntity.notFound().build();
     }

@@ -39,9 +39,11 @@ public class DrugService {
         if (optionalDrug.isEmpty()) { throw new DrugNotFoundException(); }
         return optionalDrug.get();
     }
-    public void updateDrug(Integer id, DrugEntity drugEntity) throws DrugNotFoundException, CategoryNotFoundException {
-        Optional<DrugEntity> optionalDrug = drugRepository.findById(id);
-        if (optionalDrug.isEmpty()) { throw new DrugNotFoundException(); }
+    public void updateDrug(Integer id, DrugEntity drugEntity) throws DrugNotFoundException, CategoryNotFoundException, DrugDuplicatedException {
+        Optional<DrugEntity> optionalDrugId = drugRepository.findById(id);
+        if (optionalDrugId.isEmpty()) { throw new DrugNotFoundException(); }
+        Optional<DrugEntity> optionalDrugName = drugRepository.findByName(drugEntity.getName());
+        if (optionalDrugName.isPresent()) { throw new DrugDuplicatedException(); }
         Optional<CategoryEntity> optionalCategory = categoryRepository.findById(drugEntity.getCategory().getId());
         if (optionalCategory.isEmpty()) { throw new CategoryNotFoundException(); }
         drugEntity.setId(id);
