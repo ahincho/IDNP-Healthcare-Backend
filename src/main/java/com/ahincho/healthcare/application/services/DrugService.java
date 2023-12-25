@@ -23,10 +23,10 @@ public class DrugService {
         return drugRepository.findAll();
     }
     public List<DrugEntity> getDrugsByCategoryId(Integer categoryId) {
-        return drugRepository.getDrugEntityByCategoryId(categoryId);
+        return drugRepository.findByCategoryId(categoryId);
     }
     public DrugEntity createDrug(DrugEntity drugEntity) throws DrugDuplicatedException, CategoryNotFoundException {
-        Optional<DrugEntity> optionalDrug = drugRepository.getDrugEntityByName(drugEntity.getName());
+        Optional<DrugEntity> optionalDrug = drugRepository.findByName(drugEntity.getName());
         if (optionalDrug.isPresent()) { throw new DrugDuplicatedException(); }
         Optional<CategoryEntity> optionalCategory = categoryRepository.findById(drugEntity.getCategory().getId());
         if (optionalCategory.isEmpty()) { throw new CategoryNotFoundException(); }
