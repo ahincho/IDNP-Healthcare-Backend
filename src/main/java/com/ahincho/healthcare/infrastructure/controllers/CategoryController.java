@@ -4,6 +4,7 @@ import com.ahincho.healthcare.application.services.CategoryService;
 import com.ahincho.healthcare.domain.dtos.CategoryRequest;
 import com.ahincho.healthcare.domain.dtos.CategoryResponse;
 import com.ahincho.healthcare.domain.entities.CategoryEntity;
+import com.ahincho.healthcare.domain.exceptions.CategoryDuplicatedException;
 import com.ahincho.healthcare.domain.exceptions.CategoryNotFoundException;
 import com.ahincho.healthcare.domain.mappers.CategoryMapper;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class CategoryController {
         return ResponseEntity.created(uri).body(CategoryMapper.entityToResponse(categoryEntity));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid CategoryRequest categoryRequest) throws CategoryNotFoundException {
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid CategoryRequest categoryRequest) throws CategoryNotFoundException, CategoryDuplicatedException {
         categoryService.updateCategory(id, CategoryMapper.requestToEntity(categoryRequest));
         return ResponseEntity.notFound().build();
     }
