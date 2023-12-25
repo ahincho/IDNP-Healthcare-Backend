@@ -27,9 +27,11 @@ public class RoleService {
         if (optionalRole.isPresent()) { throw new RoleDuplicatedException(); }
         return roleRepository.save(roleEntity);
     }
-    public void updateRole(Integer id, RoleEntity roleEntity) throws RoleNotFoundException {
-        Optional<RoleEntity> optionalRole = roleRepository.findById(id);
-        if (optionalRole.isEmpty()) { throw new RoleNotFoundException(); }
+    public void updateRole(Integer id, RoleEntity roleEntity) throws RoleNotFoundException, RoleDuplicatedException {
+        Optional<RoleEntity> optionalRoleId = roleRepository.findById(id);
+        if (optionalRoleId.isEmpty()) { throw new RoleNotFoundException(); }
+        Optional<RoleEntity> optionalRoleName = roleRepository.findByName(roleEntity.getName());
+        if (optionalRoleName.isPresent()) { throw new RoleDuplicatedException(); }
         roleEntity.setId(id);
         roleRepository.save(roleEntity);
     }

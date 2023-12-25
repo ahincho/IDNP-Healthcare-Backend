@@ -39,7 +39,7 @@ public class RoleController {
         return ResponseEntity.created(uri).body(RoleMapper.entityToResponse(roleEntity));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid RoleRequest roleRequest) throws RoleNotFoundException {
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid RoleRequest roleRequest) throws RoleNotFoundException, RoleDuplicatedException {
         roleService.updateRole(id, RoleMapper.requestToEntity(roleRequest));
         return ResponseEntity.notFound().build();
     }
