@@ -15,6 +15,9 @@
 						{
 							"name": "Get Categories",
 							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -176,6 +179,23 @@
 					"name": "Drugs",
 					"item": [
 						{
+							"name": "Get Drugs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{drugs}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get Drug By Id",
 							"request": {
 								"method": "GET",
@@ -298,23 +318,6 @@
 							"response": []
 						},
 						{
-							"name": "Get Drugs Copy",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{local}}/{{drugs}}",
-									"host": [
-										"{{local}}"
-									],
-									"path": [
-										"{{drugs}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Update Drug",
 							"request": {
 								"method": "PUT",
@@ -373,6 +376,143 @@
 										"{{drugs}}",
 										"category",
 										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Roles",
+					"item": [
+						{
+							"name": "Get Roles",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{roles}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Role",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{roles}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Role",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"User\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{roles}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Role By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{roles}}/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Role",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"USER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{roles}}/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Role",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{roles}}/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}",
+										"2"
 									]
 								}
 							},
@@ -531,6 +671,11 @@
 		{
 			"key": "users",
 			"value": "api/users",
+			"type": "string"
+		},
+		{
+			"key": "roles",
+			"value": "api/roles",
 			"type": "string"
 		}
 	]
