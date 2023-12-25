@@ -5,11 +5,11 @@ import com.ahincho.healthcare.domain.dtos.LoginRequest;
 import com.ahincho.healthcare.domain.dtos.UserRequest;
 import com.ahincho.healthcare.domain.dtos.UserResponse;
 import com.ahincho.healthcare.domain.entities.UserEntity;
-import com.ahincho.healthcare.domain.exceptions.UserDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.UserDuplicatedEmailException;
+import com.ahincho.healthcare.domain.exceptions.UserDuplicatedUsernameException;
 import com.ahincho.healthcare.domain.exceptions.UserNotFoundException;
 import com.ahincho.healthcare.domain.mappers.UserMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import jakarta.validation.Valid;
@@ -19,16 +19,12 @@ import java.net.URI;
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
-    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
     }
     @PostMapping("/register")
-    public ResponseEntity<UserResponse> save(@RequestBody @Valid UserRequest userRequest, UriComponentsBuilder uriComponentsBuilder) throws UserDuplicatedException {
-        UserEntity userEntity = UserMapper.requestToEntity(userRequest);
-        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-        UserEntity savedUserEntity = userService.createUser(userEntity);
+    public ResponseEntity<UserResponse> save(@RequestBody @Valid UserRequest userRequest, UriComponentsBuilder uriComponentsBuilder) throws UserDuplicatedEmailException, UserDuplicatedUsernameException {
+        UserEntity savedUserEntity = userService.createUser(UserMapper.requestToEntity(userRequest));
         URI uri = uriComponentsBuilder.path("/api/users/login").build().toUri();
         return ResponseEntity.created(uri).body(UserMapper.entityToResponse(savedUserEntity));
     }
