@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import jakarta.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -22,27 +23,31 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    @PostMapping("/register")
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> getAll() {
+        List<UserEntity> userEntities = userService.getAllUsers();
+        if (userEntities.isEmpty()) { ResponseEntity.noContent().build(); }
+        return ResponseEntity.ok(userEntities.stream().map(UserMapper::entityToResponse).toList());
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponse> findById(@PathVariable("id") Integer id) throws UserNotFoundException {
+        UserEntity userEntity = userService.findUserById(id);
+        return ResponseEntity.ok(UserMapper.entityToResponse(userEntity));
+    }
+    @PostMapping
     public ResponseEntity<UserResponse> save(@RequestBody @Valid UserRequest userRequest, UriComponentsBuilder uriComponentsBuilder) throws UserDuplicatedEmailException, UserDuplicatedUsernameException {
         UserEntity savedUserEntity = userService.createUser(UserMapper.requestToEntity(userRequest));
         URI uri = uriComponentsBuilder.path("/api/users/login").build().toUri();
         return ResponseEntity.created(uri).body(UserMapper.entityToResponse(savedUserEntity));
-    }
-    @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@RequestBody @Valid LoginRequest loginRequest) throws UserNotFoundException {
-        String email = loginRequest.getEmail();
-        String password = loginRequest.getPassword();
-        UserEntity userEntity = userService.findUserByEmailAndPassword(email, password);
-        return ResponseEntity.ok(UserMapper.entityToResponse(userEntity));
     }
     @PutMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid UserRequest userRequest) throws UserNotFoundException {
         userService.updateUser(id, UserMapper.requestToEntity(userRequest));
         return ResponseEntity.notFound().build();
     }
-    @GetMapping("/upgrade/{id}")
-    private ResponseEntity<Void> upgrade(@PathVariable("id") Integer id) throws UserNotFoundException {
-        userService.makeAdmin(id);
-        return ResponseEntity.notFound().build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws UserNotFoundException {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 }
