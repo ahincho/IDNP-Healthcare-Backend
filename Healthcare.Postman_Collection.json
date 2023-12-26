@@ -1,0 +1,869 @@
+{
+	"info": {
+		"_postman_id": "1ebec357-a4b4-45ed-a670-19ebacc36fe7",
+		"name": "Healthcare",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28629003"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Get Categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Anesthetics\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Antibacterials\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Anticonvulsants\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Antivirals\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Category By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{categories}}/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Antifungals\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{categories}}/4",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Drugs",
+					"item": [
+						{
+							"name": "Get Drugs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{drugs}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Drug",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Paracetamol\",\r\n    \"categoryId\": 1,\r\n    \"description\": \"Analgesic and antipyretic drug that is used to temporarily relieve mild-to-moderate pain and fever\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{drugs}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Drug",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ibuprofen\",\r\n    \"categoryId\": 2,\r\n    \"description\": \"Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used to treat mild to moderate pain, and helps to relieve symptoms of arthritis\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{drugs}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Drug",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Penicillin\",\r\n    \"categoryId\": 3,\r\n    \"description\": \"Used to treat infections caused by bacteria. They work by killing the bacteria or preventing their growth\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{drugs}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Drug",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hirudoid\",\r\n    \"categoryId\": 1,\r\n    \"description\": \"This medicine relieves dry skin due to its moisturizing effect. It also treats pain or swelling by promoting blood circulation\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{drugs}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Drug By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{drugs}}/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Drug",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ibuprofen\",\r\n    \"categoryId\": 1,\r\n    \"description\": \"Nonsteroidal anti-inflammatory drug (NSAID) used to treat mild to moderate pain, and helps to relieve symptoms of arthritis (osteoarthritis, rheumatoid arthritis, or juvenile arthritis)\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{drugs}}/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Drug",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{drugs}}/4",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Drugs By Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{drugs}}/category/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}",
+										"category",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Roles",
+					"item": [
+						{
+							"name": "Get Roles",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{roles}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Role",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"WRITER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{roles}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Role",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"VIEWER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{roles}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Role By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{roles}}/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Role",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"CONTENT_WRITER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{roles}}/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Role",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{roles}}/4",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get Users",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{users}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Angel\",\r\n    \"lastname\": \"Hincho\",\r\n    \"username\": \"ahincho\",\r\n    \"email\": \"ahincho@unsa.edu.pe\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{users}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Samir\",\r\n    \"lastname\": \"Chavez\",\r\n    \"username\": \"schavez\",\r\n    \"email\": \"schavez@unsa.edu.pe\",\r\n    \"password\": \"@schavez/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{users}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{users}}/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"lastname\": \"Jove\",\r\n    \"username\": \"ejove\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{users}}/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{users}}/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Paul\",\r\n    \"lastname\": \"Luque\",\r\n    \"username\": \"pluque\",\r\n    \"email\": \"pluque@unsa.edu.pe\",\r\n    \"password\": \"@pluque/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{auth}}/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{auth}}",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"ahincho\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{auth}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{auth}}",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"pluque\",\r\n    \"password\": \"@pluque/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{auth}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{auth}}",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cloud",
+			"item": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "localhost:8090",
+			"type": "string"
+		},
+		{
+			"key": "categories",
+			"value": "api/categories",
+			"type": "string"
+		},
+		{
+			"key": "drugs",
+			"value": "api/drugs",
+			"type": "string"
+		},
+		{
+			"key": "users",
+			"value": "api/users",
+			"type": "string"
+		},
+		{
+			"key": "roles",
+			"value": "api/roles",
+			"type": "string"
+		},
+		{
+			"key": "auth",
+			"value": "api/auth",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaGluY2hvIiwiaWF0IjoxNzAzNTY1NTg3LCJleHAiOjE3MDM2NTE5ODd9.QGc3nfs5lIGFHHYvwAq2Ows7K7ObSj7e2li5v_yUTuc",
+			"type": "string"
+		}
+	]
+}
