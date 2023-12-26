@@ -23,33 +23,33 @@ public class RoleController {
         this.roleService = roleService;
     }
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<RoleResponse>> getAll() {
         List<RoleEntity> roleEntities = roleService.getAllRoles();
         if (roleEntities.isEmpty()) { return ResponseEntity.noContent().build(); }
         return ResponseEntity.ok(roleEntities.stream().map(RoleMapper::entityToResponse).toList());
     }
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<RoleResponse> getById(@PathVariable("id") Integer id) throws RoleNotFoundException {
         RoleEntity roleEntity = roleService.getRoleById(id);
         return ResponseEntity.ok(RoleMapper.entityToResponse(roleEntity));
     }
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<RoleResponse> save(@RequestBody @Valid RoleRequest roleRequest, UriComponentsBuilder uriComponentsBuilder) throws RoleDuplicatedException {
         RoleEntity roleEntity = roleService.createRole(RoleMapper.requestToEntity(roleRequest));
         URI uri = uriComponentsBuilder.path("/api/roles/{id}").buildAndExpand(roleEntity.getId()).toUri();
         return ResponseEntity.created(uri).body(RoleMapper.entityToResponse(roleEntity));
     }
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid RoleRequest roleRequest) throws RoleNotFoundException, RoleDuplicatedException {
         roleService.updateRole(id, RoleMapper.requestToEntity(roleRequest));
         return ResponseEntity.notFound().build();
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws RoleNotFoundException {
         roleService.deleteRole(id);
         return ResponseEntity.notFound().build();
