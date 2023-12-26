@@ -111,6 +111,32 @@
 							"response": []
 						},
 						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Antivirals\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get Category By Id",
 							"request": {
 								"method": "GET",
@@ -161,13 +187,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{local}}/{{categories}}/3",
+									"raw": "{{local}}/{{categories}}/4",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
 										"{{categories}}",
-										"3"
+										"4"
 									]
 								}
 							},
@@ -190,24 +216,6 @@
 									],
 									"path": [
 										"{{drugs}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Drug By Id",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{local}}/{{drugs}}/3",
-									"host": [
-										"{{local}}"
-									],
-									"path": [
-										"{{drugs}}",
-										"3"
 									]
 								}
 							},
@@ -298,7 +306,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Hirudoid\",\r\n    \"categoryId\": 1,\r\n    \"description\": \"This medicine relieves dry skin due to its moisturizing effect. It also treats pain or swelling by promoting blood circulation. It is usually used to treat conditions such as dry skin\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Hirudoid\",\r\n    \"categoryId\": 1,\r\n    \"description\": \"This medicine relieves dry skin due to its moisturizing effect. It also treats pain or swelling by promoting blood circulation\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -312,6 +320,24 @@
 									],
 									"path": [
 										"{{drugs}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Drug By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{drugs}}/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{drugs}}",
+										"3"
 									]
 								}
 							},
@@ -410,7 +436,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Admin\"\r\n}",
+									"raw": "{\r\n    \"name\": \"WRITER\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -436,7 +462,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"User\"\r\n}",
+									"raw": "{\r\n    \"name\": \"VIEWER\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -480,7 +506,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"USER\"\r\n}",
+									"raw": "{\r\n    \"name\": \"CONTENT_WRITER\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -488,13 +514,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/{{roles}}/2",
+									"raw": "{{local}}/{{roles}}/3",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
 										"{{roles}}",
-										"2"
+										"3"
 									]
 								}
 							},
@@ -506,13 +532,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{local}}/{{roles}}/2",
+									"raw": "{{local}}/{{roles}}/4",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
 										"{{roles}}",
-										"2"
+										"4"
 									]
 								}
 							},
@@ -524,7 +550,27 @@
 					"name": "Users",
 					"item": [
 						{
-							"name": "Register User",
+							"name": "Get Users",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{users}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -538,26 +584,25 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/{{users}}/register",
+									"raw": "{{local}}/{{users}}",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
-										"{{users}}",
-										"register"
+										"{{users}}"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Login",
+							"name": "Create User",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"ahincho@unsa.edu.pe\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Samir\",\r\n    \"lastname\": \"Chavez\",\r\n    \"username\": \"schavez\",\r\n    \"email\": \"schavez@unsa.edu.pe\",\r\n    \"password\": \"@schavez/dev@\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -565,13 +610,30 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/{{users}}/login",
+									"raw": "{{local}}/{{users}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{users}}/1",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
 										"{{users}}",
-										"login"
+										"1"
 									]
 								}
 							},
@@ -584,7 +646,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"lastname\": \"Jove\",\r\n    \"username\": \"ejove\",\r\n    \"email\": \"ejove@unsa.edu.pe\",\r\n    \"password\": \"@ejove/dev@\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"lastname\": \"Jove\",\r\n    \"username\": \"ejove\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -605,19 +667,18 @@
 							"response": []
 						},
 						{
-							"name": "Make Admin",
+							"name": "Delete User",
 							"request": {
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{local}}/{{users}}/upgrade/1",
+									"raw": "{{local}}/{{users}}/2",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
 										"{{users}}",
-										"upgrade",
-										"1"
+										"2"
 									]
 								}
 							},
