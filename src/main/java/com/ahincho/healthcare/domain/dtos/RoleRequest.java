@@ -1,18 +1,15 @@
 package com.ahincho.healthcare.domain.dtos;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Set;
 
 @Data @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse {
-    private Integer id;
+public class RoleRequest {
+    @NotBlank(message = "Name must not be blank")
     private String name;
-    private String lastname;
-    private String username;
-    private Set<String> roles;
 }

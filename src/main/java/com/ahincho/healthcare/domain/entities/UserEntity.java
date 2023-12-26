@@ -1,8 +1,8 @@
 package com.ahincho.healthcare.domain.entities;
 
-import com.ahincho.healthcare.domain.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.Set;
 
 @Table(name = "users")
 @Entity(name = "user")
@@ -18,6 +18,7 @@ public class UserEntity {
     private String username;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = RoleEntity.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles;
 }

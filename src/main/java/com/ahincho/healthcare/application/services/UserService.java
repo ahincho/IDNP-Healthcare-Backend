@@ -1,42 +1,66 @@
 package com.ahincho.healthcare.application.services;
 
+import com.ahincho.healthcare.domain.entities.RoleEntity;
 import com.ahincho.healthcare.domain.entities.UserEntity;
-import com.ahincho.healthcare.domain.enums.Role;
-import com.ahincho.healthcare.domain.exceptions.UserDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.RoleNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.UserDuplicatedEmailException;
+import com.ahincho.healthcare.domain.exceptions.UserDuplicatedUsernameException;
 import com.ahincho.healthcare.domain.exceptions.UserNotFoundException;
+import com.ahincho.healthcare.domain.repositories.RoleRepository;
 import com.ahincho.healthcare.domain.repositories.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    public UserService(UserRepository userRepository) {
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
-    public UserEntity findUserByEmailAndPassword(String email, String password) throws UserNotFoundException {
-        Optional<UserEntity> optionalUser = userRepository.findUserEntityByEmailAndPassword(email, password);
+    public List<UserEntity> getAllUsers() {
+        return userRepository.findAll();
+    }
+    public UserEntity findUserById(Integer id) throws UserNotFoundException {
+        Optional<UserEntity> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty()) { throw new UserNotFoundException(); }
         return optionalUser.get();
     }
-    public UserEntity createUser(UserEntity userEntity) throws UserDuplicatedException {
-        Optional<UserEntity> optionalUser = userRepository.findUserEntityByEmail(userEntity.getEmail());
-        if (optionalUser.isPresent()) { throw new UserDuplicatedException(); }
-        userEntity.setRole(Role.VIEWER);
+    @Transactional
+    public UserEntity createUser(UserEntity userEntity) throws UserDuplicatedEmailException, UserDuplicatedUsernameException, RoleNotFoundException {
+        Optional<UserEntity> optionalUserEmail = userRepository.findByEmail(userEntity.getEmail());
+        if (optionalUserEmail.isPresent()) { throw new UserDuplicatedEmailException(); }
+        Optional<UserEntity> optionalUserUsername = userRepository.findByUsername(userEntity.getUsername());
+        if (optionalUserUsername.isPresent()) { throw new UserDuplicatedUsernameException(); }
+        Optional<RoleEntity> roleEntity = roleRepository.findByName("USER");
+        if (roleEntity.isEmpty()) { throw new RoleNotFoundException(); }
+        userEntity.setRoles(Set.of(roleEntity.get()));
+        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         return userRepository.save(userEntity);
     }
-    public void updateUser(Integer id, UserEntity userEntity) throws UserNotFoundException {
-        Optional<UserEntity> optionalUser = userRepository.findById(id);
-        if (optionalUser.isEmpty()) { throw new UserNotFoundException(); }
-        userEntity.setId(id);
-        userRepository.save(userEntity);
+    @Transactional
+    public void updateUser(Integer id, UserEntity userEntity) throws UserNotFoundException, UserDuplicatedUsernameException {
+        Optional<UserEntity> optionalUserId = userRepository.findById(id);
+        if (optionalUserId.isEmpty()) { throw new UserNotFoundException(); }
+        Optional<UserEntity> optionalUserUsername = userRepository.findByUsername(userEntity.getUsername());
+        if (optionalUserUsername.isPresent()) { throw new UserDuplicatedUsernameException(); }
+        UserEntity savedUserEntity = optionalUserId.get();
+        savedUserEntity.setName(userEntity.getName());
+        savedUserEntity.setLastname(userEntity.getLastname());
+        savedUserEntity.setUsername(userEntity.getUsername());
+        userRepository.save(savedUserEntity);
     }
-    public void makeAdmin(Integer id) throws UserNotFoundException {
+    @Transactional
+    public void deleteUser(Integer id) throws UserNotFoundException {
         Optional<UserEntity> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty()) { throw new UserNotFoundException(); }
-        UserEntity userEntity = optionalUser.get();
-        userEntity.setRole(Role.ADMIN);
-        userRepository.save(userEntity);
+        userRepository.deleteById(id);
     }
 }

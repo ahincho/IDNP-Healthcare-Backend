@@ -108,6 +108,32 @@
 							"response": []
 						},
 						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Antivirals\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{categories}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get Category By Id",
 							"request": {
 								"method": "GET",
@@ -158,13 +184,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{local}}/{{categories}}/3",
+									"raw": "{{local}}/{{categories}}/4",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
 										"{{categories}}",
-										"3"
+										"4"
 									]
 								}
 							},
@@ -176,18 +202,17 @@
 					"name": "Drugs",
 					"item": [
 						{
-							"name": "Get Drug By Id",
+							"name": "Get Drugs",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{local}}/{{drugs}}/3",
+									"raw": "{{local}}/{{drugs}}",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
-										"{{drugs}}",
-										"3"
+										"{{drugs}}"
 									]
 								}
 							},
@@ -278,7 +303,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Hirudoid\",\r\n    \"categoryId\": 1,\r\n    \"description\": \"This medicine relieves dry skin due to its moisturizing effect. It also treats pain or swelling by promoting blood circulation. It is usually used to treat conditions such as dry skin\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Hirudoid\",\r\n    \"categoryId\": 1,\r\n    \"description\": \"This medicine relieves dry skin due to its moisturizing effect. It also treats pain or swelling by promoting blood circulation\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -298,17 +323,18 @@
 							"response": []
 						},
 						{
-							"name": "Get Drugs Copy",
+							"name": "Get Drug By Id",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{local}}/{{drugs}}",
+									"raw": "{{local}}/{{drugs}}/3",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
-										"{{drugs}}"
+										"{{drugs}}",
+										"3"
 									]
 								}
 							},
@@ -381,10 +407,167 @@
 					]
 				},
 				{
+					"name": "Roles",
+					"item": [
+						{
+							"name": "Get Roles",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{roles}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Role",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"WRITER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{roles}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Role",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"VIEWER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{roles}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Role By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{roles}}/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Role",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"CONTENT_WRITER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{roles}}/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Role",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{roles}}/4",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{roles}}",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Users",
 					"item": [
 						{
-							"name": "Register User",
+							"name": "Get Users",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{users}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -398,26 +581,25 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/{{users}}/register",
+									"raw": "{{local}}/{{users}}",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
-										"{{users}}",
-										"register"
+										"{{users}}"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Login",
+							"name": "Create User",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"ahincho@unsa.edu.pe\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Samir\",\r\n    \"lastname\": \"Chavez\",\r\n    \"username\": \"schavez\",\r\n    \"email\": \"schavez@unsa.edu.pe\",\r\n    \"password\": \"@schavez/dev@\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -425,13 +607,30 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/{{users}}/login",
+									"raw": "{{local}}/{{users}}",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{users}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/{{users}}/1",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
 										"{{users}}",
-										"login"
+										"1"
 									]
 								}
 							},
@@ -444,7 +643,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"lastname\": \"Jove\",\r\n    \"username\": \"ejove\",\r\n    \"email\": \"ejove@unsa.edu.pe\",\r\n    \"password\": \"@ejove/dev@\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"lastname\": \"Jove\",\r\n    \"username\": \"ejove\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -465,23 +664,131 @@
 							"response": []
 						},
 						{
-							"name": "Make Admin",
+							"name": "Delete User",
 							"request": {
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{local}}/{{users}}/upgrade/1",
+									"raw": "{{local}}/{{users}}/2",
 									"host": [
 										"{{local}}"
 									],
 									"path": [
 										"{{users}}",
-										"upgrade",
-										"1"
+										"2"
 									]
 								}
 							},
 							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Paul\",\r\n    \"lastname\": \"Luque\",\r\n    \"username\": \"pluque\",\r\n    \"email\": \"pluque@unsa.edu.pe\",\r\n    \"password\": \"@pluque/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{auth}}/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{auth}}",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"ahincho\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{auth}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{auth}}",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"pluque\",\r\n    \"password\": \"@pluque/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{auth}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{auth}}",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						}
 					]
 				}
@@ -492,6 +799,16 @@
 			"item": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -531,6 +848,21 @@
 		{
 			"key": "users",
 			"value": "api/users",
+			"type": "string"
+		},
+		{
+			"key": "roles",
+			"value": "api/roles",
+			"type": "string"
+		},
+		{
+			"key": "auth",
+			"value": "api/auth",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaGluY2hvIiwiaWF0IjoxNzAzNTY1NTg3LCJleHAiOjE3MDM2NTE5ODd9.QGc3nfs5lIGFHHYvwAq2Ows7K7ObSj7e2li5v_yUTuc",
 			"type": "string"
 		}
 	]
