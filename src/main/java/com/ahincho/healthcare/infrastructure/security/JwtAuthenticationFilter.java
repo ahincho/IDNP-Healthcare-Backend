@@ -25,10 +25,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         UserEntity userEntity;
-        String username = "";
-        String password = "";
+        String username;
+        String password;
         try {
             userEntity = new ObjectMapper().readValue(request.getInputStream(), UserEntity.class);
+            username = userEntity.getUsername();
+            password = userEntity.getPassword();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
