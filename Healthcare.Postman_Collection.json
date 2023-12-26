@@ -15,9 +15,6 @@
 						{
 							"name": "Get Categories",
 							"request": {
-								"auth": {
-									"type": "noauth"
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -685,6 +682,115 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Paul\",\r\n    \"lastname\": \"Luque\",\r\n    \"username\": \"pluque\",\r\n    \"email\": \"pluque@unsa.edu.pe\",\r\n    \"password\": \"@pluque/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{auth}}/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{auth}}",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"ahincho\",\r\n    \"password\": \"@ahincho/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{auth}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{auth}}",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"pluque\",\r\n    \"password\": \"@pluque/dev@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/{{auth}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"{{auth}}",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
 				}
 			]
 		},
@@ -693,6 +799,16 @@
 			"item": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -737,6 +853,16 @@
 		{
 			"key": "roles",
 			"value": "api/roles",
+			"type": "string"
+		},
+		{
+			"key": "auth",
+			"value": "api/auth",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaGluY2hvIiwiaWF0IjoxNzAzNTY1NTg3LCJleHAiOjE3MDM2NTE5ODd9.QGc3nfs5lIGFHHYvwAq2Ows7K7ObSj7e2li5v_yUTuc",
 			"type": "string"
 		}
 	]
