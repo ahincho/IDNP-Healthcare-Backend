@@ -2,6 +2,7 @@ package com.ahincho.healthcare.domain.mappers;
 
 import com.ahincho.healthcare.domain.dtos.UserRequest;
 import com.ahincho.healthcare.domain.dtos.UserResponse;
+import com.ahincho.healthcare.domain.dtos.UserUpdateRequest;
 import com.ahincho.healthcare.domain.entities.RoleEntity;
 import com.ahincho.healthcare.domain.entities.UserEntity;
 
@@ -24,6 +25,13 @@ public class UserMapper {
                 .username(userRequest.getUsername())
                 .email(userRequest.getEmail())
                 .password(userRequest.getPassword())
+                .build();
+    }
+    public static UserEntity updateRequestToEntity(UserUpdateRequest userUpdateRequest) {
+        return UserEntity.builder()
+                .name(userUpdateRequest.getName())
+                .lastname(userUpdateRequest.getLastname())
+                .username(userUpdateRequest.getUsername())
                 .build();
     }
 }

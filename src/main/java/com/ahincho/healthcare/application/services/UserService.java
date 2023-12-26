@@ -42,12 +42,16 @@ public class UserService {
         return userRepository.save(userEntity);
     }
     @Transactional
-    public void updateUser(Integer id, UserEntity userEntity) throws UserNotFoundException {
-        Optional<UserEntity> optionalUser = userRepository.findById(id);
-        if (optionalUser.isEmpty()) { throw new UserNotFoundException(); }
-        userEntity.setId(id);
-        userEntity.setRoles(optionalUser.get().getRoles());
-        userRepository.save(userEntity);
+    public void updateUser(Integer id, UserEntity userEntity) throws UserNotFoundException, UserDuplicatedUsernameException {
+        Optional<UserEntity> optionalUserId = userRepository.findById(id);
+        if (optionalUserId.isEmpty()) { throw new UserNotFoundException(); }
+        Optional<UserEntity> optionalUserUsername = userRepository.findByUsername(userEntity.getUsername());
+        if (optionalUserUsername.isPresent()) { throw new UserDuplicatedUsernameException(); }
+        UserEntity savedUserEntity = optionalUserId.get();
+        savedUserEntity.setName(userEntity.getName());
+        savedUserEntity.setLastname(userEntity.getLastname());
+        savedUserEntity.setUsername(userEntity.getUsername());
+        userRepository.save(savedUserEntity);
     }
     @Transactional
     public void deleteUser(Integer id) throws UserNotFoundException {

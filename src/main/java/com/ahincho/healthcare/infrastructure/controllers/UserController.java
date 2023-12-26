@@ -3,6 +3,7 @@ package com.ahincho.healthcare.infrastructure.controllers;
 import com.ahincho.healthcare.application.services.UserService;
 import com.ahincho.healthcare.domain.dtos.UserRequest;
 import com.ahincho.healthcare.domain.dtos.UserResponse;
+import com.ahincho.healthcare.domain.dtos.UserUpdateRequest;
 import com.ahincho.healthcare.domain.entities.UserEntity;
 import com.ahincho.healthcare.domain.exceptions.RoleNotFoundException;
 import com.ahincho.healthcare.domain.exceptions.UserDuplicatedEmailException;
@@ -41,8 +42,8 @@ public class UserController {
         return ResponseEntity.created(uri).body(UserMapper.entityToResponse(savedUserEntity));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid UserRequest userRequest) throws UserNotFoundException {
-        userService.updateUser(id, UserMapper.requestToEntity(userRequest));
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid UserUpdateRequest userUpdateRequest) throws UserNotFoundException, UserDuplicatedUsernameException {
+        userService.updateUser(id, UserMapper.updateRequestToEntity(userUpdateRequest));
         return ResponseEntity.notFound().build();
     }
     @DeleteMapping("/{id}")
