@@ -27,13 +27,4 @@ public class AuthController {
         UserEntity savedUserEntity = userService.createUser(UserMapper.requestToEntity(userRequest));
         return ResponseEntity.ok(UserMapper.entityToResponse(savedUserEntity));
     }
-    /*
-    @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@RequestBody @Valid LoginRequest loginRequest) throws UserNotFoundException {
-        String email = loginRequest.getEmail();
-        String password = loginRequest.getPassword();
-        UserEntity userEntity = userService.findUserByEmailAndPassword(email, password);
-        return ResponseEntity.ok(UserMapper.entityToResponse(userEntity));
-    }
-    */
 }
