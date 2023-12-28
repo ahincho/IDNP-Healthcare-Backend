@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ahincho.healthcare.HealthcareApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.56 s -- in com.ahincho.healthcare.HealthcareApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.92 s -- in com.ahincho.healthcare.HealthcareApplicationTests
