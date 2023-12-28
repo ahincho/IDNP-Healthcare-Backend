@@ -15,7 +15,6 @@ public class UserMapper {
                 .name(userEntity.getName())
                 .lastname(userEntity.getLastname())
                 .username(userEntity.getUsername())
-                .roles(userEntity.getRoles().stream().map(RoleEntity::getName).collect(Collectors.toSet()))
                 .build();
     }
     public static UserEntity requestToEntity(UserRequest userRequest) {
