@@ -1,12 +1,12 @@
 package com.ahincho.healthcare.infrastructure.controllers;
 
 import com.ahincho.healthcare.application.services.RoleService;
-import com.ahincho.healthcare.domain.dtos.RoleRequest;
-import com.ahincho.healthcare.domain.dtos.RoleResponse;
+import com.ahincho.healthcare.domain.dtos.roles.RoleRequest;
+import com.ahincho.healthcare.domain.dtos.roles.RoleResponse;
 import com.ahincho.healthcare.domain.entities.RoleEntity;
-import com.ahincho.healthcare.domain.exceptions.RoleDuplicatedException;
-import com.ahincho.healthcare.domain.exceptions.RoleNotFoundException;
-import com.ahincho.healthcare.domain.mappers.RoleMapper;
+import com.ahincho.healthcare.domain.exceptions.roles.RoleDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.roles.RoleNotFoundException;
+import com.ahincho.healthcare.application.mappers.RoleMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

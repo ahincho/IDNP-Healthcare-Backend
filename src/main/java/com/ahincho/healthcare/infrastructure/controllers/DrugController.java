@@ -1,13 +1,13 @@
 package com.ahincho.healthcare.infrastructure.controllers;
 
 import com.ahincho.healthcare.application.services.DrugService;
-import com.ahincho.healthcare.domain.dtos.DrugRequest;
-import com.ahincho.healthcare.domain.dtos.DrugResponse;
-import com.ahincho.healthcare.domain.entities.DrugEntity;
-import com.ahincho.healthcare.domain.exceptions.CategoryNotFoundException;
-import com.ahincho.healthcare.domain.exceptions.DrugDuplicatedException;
-import com.ahincho.healthcare.domain.exceptions.DrugNotFoundException;
-import com.ahincho.healthcare.domain.mappers.DrugMapper;
+import com.ahincho.healthcare.domain.dtos.medicines.MedicineRequest;
+import com.ahincho.healthcare.domain.dtos.medicines.MedicineResponse;
+import com.ahincho.healthcare.domain.entities.MedicineEntity;
+import com.ahincho.healthcare.domain.exceptions.categories.CategoryNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.medicines.MedicineDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.medicines.MedicineNotFoundException;
+import com.ahincho.healthcare.application.mappers.MedicineMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -25,40 +25,40 @@ public class DrugController {
     }
     @GetMapping
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<List<DrugResponse>> getAll() {
-        List<DrugEntity> drugEntities = drugService.getAllDrugs();
+    public ResponseEntity<List<MedicineResponse>> getAll() {
+        List<MedicineEntity> drugEntities = drugService.getAllDrugs();
         if (drugEntities.isEmpty()) { return ResponseEntity.noContent().build(); }
-        return ResponseEntity.ok(drugEntities.stream().map(DrugMapper::entityToResponse).toList());
+        return ResponseEntity.ok(drugEntities.stream().map(MedicineMapper::entityToResponse).toList());
     }
     @GetMapping("/category/{category}")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<List<DrugResponse>> getByCategory(@PathVariable("category") Integer category) {
-        List<DrugEntity> drugEntities = drugService.getDrugsByCategoryId(category);
+    public ResponseEntity<List<MedicineResponse>> getByCategory(@PathVariable("category") Integer category) {
+        List<MedicineEntity> drugEntities = drugService.getDrugsByCategoryId(category);
         if (drugEntities.isEmpty()) { return ResponseEntity.noContent().build(); }
-        return ResponseEntity.ok(drugEntities.stream().map(DrugMapper::entityToResponse).toList());
+        return ResponseEntity.ok(drugEntities.stream().map(MedicineMapper::entityToResponse).toList());
     }
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<DrugResponse> findById(@PathVariable("id") Integer id) throws DrugNotFoundException {
-        DrugEntity drugEntity = drugService.findDrugById(id);
-        return ResponseEntity.ok(DrugMapper.entityToResponse(drugEntity));
+    public ResponseEntity<MedicineResponse> findById(@PathVariable("id") Integer id) throws MedicineNotFoundException {
+        MedicineEntity medicineEntity = drugService.findDrugById(id);
+        return ResponseEntity.ok(MedicineMapper.entityToResponse(medicineEntity));
     }
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<DrugResponse> save(@RequestBody @Valid DrugRequest drugRequest, UriComponentsBuilder uriComponentsBuilder) throws CategoryNotFoundException, DrugDuplicatedException {
-        DrugEntity drugEntity = drugService.createDrug(DrugMapper.requestToEntity(drugRequest));
-        URI uri = uriComponentsBuilder.path("/api/drugs/{id}").buildAndExpand(drugEntity.getId()).toUri();
-        return ResponseEntity.created(uri).body(DrugMapper.entityToResponse(drugEntity));
+    public ResponseEntity<MedicineResponse> save(@RequestBody @Valid MedicineRequest medicineRequest, UriComponentsBuilder uriComponentsBuilder) throws CategoryNotFoundException, MedicineDuplicatedException {
+        MedicineEntity medicineEntity = drugService.createDrug(MedicineMapper.requestToEntity(medicineRequest));
+        URI uri = uriComponentsBuilder.path("/api/drugs/{id}").buildAndExpand(medicineEntity.getId()).toUri();
+        return ResponseEntity.created(uri).body(MedicineMapper.entityToResponse(medicineEntity));
     }
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid DrugRequest drugRequest) throws CategoryNotFoundException, DrugNotFoundException, DrugDuplicatedException {
-        drugService.updateDrug(id, DrugMapper.requestToEntity(drugRequest));
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid MedicineRequest medicineRequest) throws CategoryNotFoundException, MedicineNotFoundException, MedicineDuplicatedException {
+        drugService.updateDrug(id, MedicineMapper.requestToEntity(medicineRequest));
         return ResponseEntity.notFound().build();
     }
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws DrugNotFoundException {
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws MedicineNotFoundException {
         drugService.deleteDrug(id);
         return ResponseEntity.notFound().build();
     }

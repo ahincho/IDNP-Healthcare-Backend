@@ -1,8 +1,8 @@
 package com.ahincho.healthcare.infrastructure.handlers;
 
-import com.ahincho.healthcare.domain.exceptions.UserDuplicatedEmailException;
-import com.ahincho.healthcare.domain.exceptions.UserDuplicatedUsernameException;
-import com.ahincho.healthcare.domain.exceptions.UserNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.users.UserDuplicatedEmailException;
+import com.ahincho.healthcare.domain.exceptions.users.UserDuplicatedUsernameException;
+import com.ahincho.healthcare.domain.exceptions.users.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

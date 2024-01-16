@@ -1,8 +1,8 @@
 package com.ahincho.healthcare.application.services;
 
 import com.ahincho.healthcare.domain.entities.CategoryEntity;
-import com.ahincho.healthcare.domain.exceptions.CategoryDuplicatedException;
-import com.ahincho.healthcare.domain.exceptions.CategoryNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.categories.CategoryDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.categories.CategoryNotFoundException;
 import com.ahincho.healthcare.domain.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;

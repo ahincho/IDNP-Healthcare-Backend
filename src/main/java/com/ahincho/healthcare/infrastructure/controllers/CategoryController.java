@@ -1,12 +1,12 @@
 package com.ahincho.healthcare.infrastructure.controllers;
 
 import com.ahincho.healthcare.application.services.CategoryService;
-import com.ahincho.healthcare.domain.dtos.CategoryRequest;
-import com.ahincho.healthcare.domain.dtos.CategoryResponse;
+import com.ahincho.healthcare.domain.dtos.categories.CategoryRequest;
+import com.ahincho.healthcare.domain.dtos.categories.CategoryResponse;
 import com.ahincho.healthcare.domain.entities.CategoryEntity;
-import com.ahincho.healthcare.domain.exceptions.CategoryDuplicatedException;
-import com.ahincho.healthcare.domain.exceptions.CategoryNotFoundException;
-import com.ahincho.healthcare.domain.mappers.CategoryMapper;
+import com.ahincho.healthcare.domain.exceptions.categories.CategoryDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.categories.CategoryNotFoundException;
+import com.ahincho.healthcare.application.mappers.CategoryMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

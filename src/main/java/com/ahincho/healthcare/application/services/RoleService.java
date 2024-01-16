@@ -1,8 +1,8 @@
 package com.ahincho.healthcare.application.services;
 
 import com.ahincho.healthcare.domain.entities.RoleEntity;
-import com.ahincho.healthcare.domain.exceptions.RoleDuplicatedException;
-import com.ahincho.healthcare.domain.exceptions.RoleNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.roles.RoleDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.roles.RoleNotFoundException;
 import com.ahincho.healthcare.domain.repositories.RoleRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

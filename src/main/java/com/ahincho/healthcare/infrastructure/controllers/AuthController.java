@@ -1,13 +1,13 @@
 package com.ahincho.healthcare.infrastructure.controllers;
 
 import com.ahincho.healthcare.application.services.UserService;
-import com.ahincho.healthcare.domain.dtos.UserRequest;
-import com.ahincho.healthcare.domain.dtos.UserResponse;
+import com.ahincho.healthcare.domain.dtos.users.UserRequest;
+import com.ahincho.healthcare.domain.dtos.users.UserResponse;
 import com.ahincho.healthcare.domain.entities.UserEntity;
-import com.ahincho.healthcare.domain.exceptions.RoleNotFoundException;
-import com.ahincho.healthcare.domain.exceptions.UserDuplicatedEmailException;
-import com.ahincho.healthcare.domain.exceptions.UserDuplicatedUsernameException;
-import com.ahincho.healthcare.domain.mappers.UserMapper;
+import com.ahincho.healthcare.domain.exceptions.roles.RoleNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.users.UserDuplicatedEmailException;
+import com.ahincho.healthcare.domain.exceptions.users.UserDuplicatedUsernameException;
+import com.ahincho.healthcare.application.mappers.UserMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

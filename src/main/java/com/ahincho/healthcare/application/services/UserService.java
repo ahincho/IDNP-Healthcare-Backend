@@ -2,10 +2,10 @@ package com.ahincho.healthcare.application.services;
 
 import com.ahincho.healthcare.domain.entities.RoleEntity;
 import com.ahincho.healthcare.domain.entities.UserEntity;
-import com.ahincho.healthcare.domain.exceptions.RoleNotFoundException;
-import com.ahincho.healthcare.domain.exceptions.UserDuplicatedEmailException;
-import com.ahincho.healthcare.domain.exceptions.UserDuplicatedUsernameException;
-import com.ahincho.healthcare.domain.exceptions.UserNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.roles.RoleNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.users.UserDuplicatedEmailException;
+import com.ahincho.healthcare.domain.exceptions.users.UserDuplicatedUsernameException;
+import com.ahincho.healthcare.domain.exceptions.users.UserNotFoundException;
 import com.ahincho.healthcare.domain.repositories.RoleRepository;
 import com.ahincho.healthcare.domain.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,7 +1,7 @@
 package com.ahincho.healthcare.infrastructure.handlers;
 
-import com.ahincho.healthcare.domain.exceptions.RoleDuplicatedException;
-import com.ahincho.healthcare.domain.exceptions.RoleNotFoundException;
+import com.ahincho.healthcare.domain.exceptions.roles.RoleDuplicatedException;
+import com.ahincho.healthcare.domain.exceptions.roles.RoleNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
