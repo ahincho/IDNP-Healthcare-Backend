@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class DrugExceptionHandler {
+public class MedicineExceptionHandler {
     @ExceptionHandler(MedicineNotFoundException.class)
     public ResponseEntity<Void> drugNotFound() {
         return ResponseEntity.notFound().build();
