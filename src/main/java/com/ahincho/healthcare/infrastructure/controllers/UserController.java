@@ -46,8 +46,8 @@ public class UserController {
     }
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid UserUpdateRequest userUpdateRequest) throws UserNotFoundException, UserDuplicatedUsernameException {
-        userService.updateUser(id, UserMapper.updateRequestToEntity(userUpdateRequest));
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody @Valid UserRequest userUpdateRequest) throws UserNotFoundException, UserDuplicatedUsernameException {
+        userService.updateUser(id, UserMapper.requestToEntity(userUpdateRequest));
         return ResponseEntity.notFound().build();
     }
     @DeleteMapping("/{id}")
