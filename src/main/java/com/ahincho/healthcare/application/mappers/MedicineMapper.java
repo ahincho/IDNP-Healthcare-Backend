@@ -12,6 +12,7 @@ public class MedicineMapper {
                 .name(medicineEntity.getName())
                 .category(medicineEntity.getCategory().getName())
                 .description(medicineEntity.getDescription())
+                .imageUrl(medicineEntity.getImageUrl())
                 .build();
     }
     public static MedicineEntity requestToEntity(MedicineRequest medicineRequest) {
@@ -19,6 +20,7 @@ public class MedicineMapper {
                 .name(medicineRequest.getName())
                 .category(CategoryEntity.builder().id(medicineRequest.getCategoryId()).build())
                 .description(medicineRequest.getDescription())
+                .imageUrl(medicineRequest.getImageUrl())
                 .build();
     }
 }
