@@ -6,7 +6,7 @@
 FROM amazoncorretto:17.0.8-alpine
 VOLUME /tmp
 # Cloud Environment
-EXPOSE 10000
+EXPOSE 8080
 # Local Environment
 # EXPOSE 8080
 ARG JAR_FILE=target/healthcare-1.1.jar
